@@ -33,17 +33,7 @@ Tips:
 
 ### Useful Papers I Read
 
-- [Attention is all you need](https://arxiv.org/pdf/1706.03762)
-
-- [Flash attention](https://arxiv.org/pdf/2205.14135)
-
-- [Flash attention 2](https://arxiv.org/pdf/2307.08691)
-
-- [Language models are unsupersived multitask learners](https://d4mucfpksywv.cloudfront.net/better-language-models/language_models_are_unsupervised_multitask_learners.pdf)
-
-- [Language models are few-shot learners](https://arxiv.org/pdf/2005.14165)
-
-- [GPT-4 technical report](https://arxiv.org/pdf/2303.08774)
+- [Sigmoid Linear Unit - SiLU](https://paperswithcode.com/method/silu)
 
 ### Other sources
 
@@ -67,4 +57,7 @@ Making sure
 If you are
 - To solve this either set
 
+## Future Improvements & To Do List
 
+Karras scheduler paper - https://arxiv.org/abs/2206.00364
+Implement the custom schedulers

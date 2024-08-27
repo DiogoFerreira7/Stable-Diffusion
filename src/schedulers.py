@@ -1,8 +1,7 @@
-# TODO To implement the schedulers try use the SchedulerMixin that will implement all the APIs
+from diffusers import LMSDiscreteScheduler, SchedulerMixin, ConfigMixin
 
-# TODO go over lesson 22 again to implement the schedulers and understand the maths behind all of it
-from diffusers import SchedulerMixin, ConfigMixin
-
+# Karras scheduler paper - https://arxiv.org/abs/2206.00364
+# TODO perhaps trying to inherit LMSDiscreteScheduler and then overriding the methods used in the actual code could work
 class CustomScheduler(SchedulerMixin):
 
     def __init__(self):
