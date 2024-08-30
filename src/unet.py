@@ -152,6 +152,8 @@ class UNetUpBlock(nn.Module):
         return self.up_block_three(x)
 
 def linear_schedule(min, max, max_timesteps):
+    # This is the original linear schedule that was used however it was found to be suboptimal
+    # Some of the last couple of steps may seem like complete noise and be redundant
     return torch.linspace(min, max, max_timesteps + 1)[:-1]
 
 def get_timestep_embedding(max_timesteps, embedding_dim: int):
@@ -184,8 +186,8 @@ betas = linear_schedule(1e-4, 0.02, max_timesteps).to("cuda")
 alphas = 1 - betas
 alpha_bar = torch.exp(torch.cumsum(torch.log(alphas), dim=0))
 # These constants will dictate how much of the image and the noise respectively will be combined
-sqrt_alphabar = torch.sqrt(alpha_bar)
-sqrt_1malphabar = torch.sqrt(1 - alpha_bar)
+root_alpha_bar = torch.sqrt(alpha_bar)
+root_one_minus_alpha_bar = torch.sqrt(1 - alpha_bar)
 
 # Generate timestep embeddings - the embedding dimension is hardcoded and based on the number of channels at the bottom layer of the U-Net
 # Here we take the number of timesteps that will create all the betas / alphas for noise generation and then we create sinusoidal embeddings
@@ -234,12 +236,12 @@ for epoch in range(epochs):
 
         # TODO update these based on the diffusion paper
         # Calculate how much noise to add to the image batch by broadcasting the two tensors to the size of the image and the noise
-        sqrt_alphabar_ts = sqrt_alphabar[timesteps]
-        sqrt_1malphabar_ts = sqrt_1malphabar[timesteps]
-        X_t = sqrt_alphabar_ts[:, None, None, None] * batched_images + sqrt_1malphabar_ts[:, None, None, None] * noise
+        root_alpha_bar_timestep = root_alpha_bar[timesteps]
+        root_one_minus_alpha_bar_timestep = root_one_minus_alpha_bar[timesteps]
+        x_t = root_alpha_bar_timestep[:, None, None, None] * batched_images + root_one_minus_alpha_bar_timestep[:, None, None, None] * noise
 
         # Use the U-Net to predict the amount of noise in the image give the timestep and the noised image
-        noise_prediction = unet(X_t, timestep_embeddings)
+        noise_prediction = unet(x_t, timestep_embeddings)
 
         # Compute the loss between the real noise and predicted noise - making sure we keep the noise loss separate to .backward
         loss = mse_loss(noise, noise_prediction)

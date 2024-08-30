@@ -39,15 +39,21 @@ Tips:
 
 - [Stats behind stable diffusion](https://mbernste.github.io/posts/diffusion_part1/)
 
-- [OpenAI CLIP Explanation](https://openai.com/index/clip/)
+- [Original Paper](https://arxiv.org/pdf/1503.03585.pdf)
 
-- [CLIP Paper - Learning Transferable Visual Models from Language Supervision](https://arxiv.org/pdf/2103.00020)
+- [DDPM](https://arxiv.org/pdf/2006.11239.pdf)
+
+The following papers I found give improvements to the models and were both released in 2021
+- [Paper 1](https://arxiv.org/pdf/2102.09672.pdf)
+- [Paper 2](https://arxiv.org/pdf/2105.05233.pdf)
 
 ### Other sources
 
-I would highly recommend reading these to get a good understanding into.
+I would highly recommend reading these to get a good understanding.
 
-3Blue1Brown - [Mathematics behind transformers - Chapter 5/6](https://youtube.com/playlist?list=PLZHQObOWTQDNU6R1_67000Dx_ZCJB-3pi&si=7kUJ3D5-B24sOq7j)
+- [OpenAI CLIP Explanation](https://openai.com/index/clip/)
+
+- [Mathematics Behind DDPM (YouTube)](https://www.youtube.com/watch?v=HoKDTa5jHvg)
 
 ## Common Problems & Fixes
 
@@ -60,4 +66,7 @@ If you are
 ## Future Improvements & To Do List
 
 Karras scheduler paper - https://arxiv.org/abs/2206.00364
-Implement the custom schedulers
+
+Implementing the learned interpolation for beta
+
+Using attention inside the U-Net
