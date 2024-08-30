@@ -33,21 +33,21 @@ Tips:
 
 ### Useful Papers I Read
 
+- [U-Net](https://arxiv.org/pdf/1505.04597)
+
 - [Sigmoid Linear Unit - SiLU](https://paperswithcode.com/method/silu)
+
+- [Stats behind stable diffusion](https://mbernste.github.io/posts/diffusion_part1/)
+
+- [OpenAI CLIP Explanation](https://openai.com/index/clip/)
+
+- [CLIP Paper - Learning Transferable Visual Models from Language Supervision](https://arxiv.org/pdf/2103.00020)
 
 ### Other sources
 
-These resources were of great help in understanding the inner workings behind transformers and the GPT papers.
+I would highly recommend reading these to get a good understanding into.
 
 3Blue1Brown - [Mathematics behind transformers - Chapter 5/6](https://youtube.com/playlist?list=PLZHQObOWTQDNU6R1_67000Dx_ZCJB-3pi&si=7kUJ3D5-B24sOq7j)
-
-OpenAI - [GPT-2 Tensorflow Implementation](https://github.com/openai/gpt-2/blob/master/src/model.py)
-
-Hugging Face Tranformers - [GPT-2 PyTorch Implementation](https://github.com/huggingface/transformers/blob/main/src/transformers/models/gpt2/modeling_gpt2.py)
-
-PyTorch - [Fast GPT Implementation and Article](https://github.com/pytorch-labs/gpt-fast)
-
-Andrej Karpathy - [Zero to Hero: NN Course](https://youtube.com/playlist?list=PLAqhIrjkxbuWI23v9cThsA9GvCAUhRvKZ&si=xMIrxu1JbABFPRej)
 
 ## Common Problems & Fixes
 
