@@ -6,28 +6,50 @@ With this goal in mind I have created several visualisation methods that are all
 You can visualise the initial tokenisation and attention mask where CLIP guides the diffusion process, visualise the latents of any generated image, plot how different schedulers control sigma (and hence the noise) as well as view the noised images affected by any noise schedule.
 
 #### Project Files: 
-- m.py - scrip
-- gt.py - tra
+- main.ipynb - Main script with the entire pipeline and visualisation methods connecting all separate components
+- autoencoders.py - Original Autoencoder implementation and VAE implementation, included is a training loop and all of their sections broken down and explained
+- unet.py - U-Net implementation, commented based on the paper and other articles linked below
+- unet_testing.ipynb - Testing file for understanding different implementations of positional sinusoidal embeddings
 
-Skip [here](#results) to see the of my GPT 3 Large (0.76B param) model
+## Custom Pipeline Functionality
 
-## How to
+### Visualising latents & Noised Images
 
-### Visualise latents
+Custom functionality of the pipeline includes visualising the image latents, and any noised image at an intermediate point in the reverse process.
 
-Loading 
+Take this parrot image, this image was for illustration purposes and was not generated on many inference steps (10 in this case), hence the poor quality.
 
-![GPT-2 Pretrained](assets/pretrained_gpt.png)
+![Generated parrot image](assets/generated_parrot.png)
 
-### Visualise tokenisation and attention masks
+These are the respective latents - our latents have 4 channels but you can build a VAE / AutoEncoder of any dimensions.
 
-To train your
+![Latents](assets/generated_parrot_latents.png)
 
-![GPT2 Configuration](assets/gpt2_config.png)
+Visualising the 5th denoised image (this would be x_5 from x_t to x_0) during inference.
 
-Tips:
-- You
-- Che
+![Noised image](assets/generated_parrot_latents.png)
+
+### Visualising latents & Noised Images
+
+The tokenisation process can also be viewed here, the first tensor shows the tokenised tensor that has been padded, the second tensor shows the attention mask, ignoring all values with 0 (padding).
+
+Finally the unique tokens used and their respective token ids / values are shown.
+
+![Generated parrot image](assets/tokenisation_visualisation.png)
+
+### Choosing Schedulers & Validation
+
+I implemented a method that would return all possible DiscreteSchedulers already implemented in the diffusers library, you can either call this manually or it will be shown to you if you get a scheduler AttributeError as shown below.
+
+![Useful error showing all schedulers](assets/scheduler_errors.png)
+
+The pipeline will also automatically validate your parameters passed to the scheduler
+
+![Scheduler parameter validation](assets/scheduler_parameter_validation.png)
+
+Here is an example of using HeunDiscreteScheduler, a much better parrot image is generated with the same number of inference steps.
+
+![Scheduler parameter validation](assets/different_schedulers.png)
 
 ## Resources
 
@@ -36,6 +58,10 @@ Tips:
 - [U-Net](https://arxiv.org/pdf/1505.04597)
 
 - [Sigmoid Linear Unit - SiLU](https://paperswithcode.com/method/silu)
+
+Here is a comparison of the activation functions which shows the reasoning behind my choice to use a SiLU in my implementation.
+
+![Useful error showing all schedulers](assets/scheduler_errors.png)
 
 - [Stats behind stable diffusion](https://mbernste.github.io/posts/diffusion_part1/)
 
@@ -57,16 +83,13 @@ I would highly recommend reading these to get a good understanding.
 
 ## Common Problems & Fixes
 
-Making sure 
+If you get any CUDA problems it is likely that your installation is not working, here is a useful tutorial I used
 - [Comprehensive StackOverflow Guide](https://stackoverflow.com/questions/60987997/why-torch-cuda-is-available-returns-false-even-after-installing-pytorch-with)
-
-If you are
-- To solve this either set
 
 ## Future Improvements & To Do List
 
 Karras scheduler paper - https://arxiv.org/abs/2206.00364
 
-Implementing the learned interpolation for beta
+Implementing the learned interpolation for beta as implemented by OpenAI
 
 Using attention inside the U-Net

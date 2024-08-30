@@ -234,7 +234,6 @@ for epoch in range(epochs):
         # Grab the positional time embeddings for all the random timesteps - if we have B timesteps each of size N we will get a B x N output
         timestep_embeddings = time_embeddings[timesteps].to("cuda")
 
-        # TODO update these based on the diffusion paper
         # Calculate how much noise to add to the image batch by broadcasting the two tensors to the size of the image and the noise
         root_alpha_bar_timestep = root_alpha_bar[timesteps]
         root_one_minus_alpha_bar_timestep = root_one_minus_alpha_bar[timesteps]

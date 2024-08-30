@@ -1,8 +1,3 @@
-# TODO implement all the different losses as well as an autoencoder / vae (maybe base use a base class if they both use lots of the same components)
-# e.g KL and others ones specified on the notebook 29 - rewatch the video
-
-# TODO get autoencoder / vae paper and comment this
-
 import torch
 import torch.functional as F
 import torch.nn.init as init
@@ -80,7 +75,6 @@ class VAE(Module):
             Sequential(Linear(num_hidden, num_hidden, bias=True), SiLU(), BatchNorm1d(num_hidden)),
         )
         
-        # TODO read paper and figure out why this is
         # Both the mean and variance sides have no bias and no activation function
         self.mean = Sequential(Linear(num_hidden, num_latents, bias=False), BatchNorm1d(num_latents))
         self.log_variance = Sequential(Linear(num_hidden, num_latents, bias=False), BatchNorm1d(num_latents))
