@@ -27,7 +27,7 @@ These are the respective latents - our latents have 4 channels but you can build
 
 Visualising the 5th denoised image (this would be x_5 from x_t to x_0) during inference.
 
-![Noised image](assets/generated_parrot_latents.png)
+![Noised image](assets/noised_image.png)
 
 ### Visualising latents & Noised Images
 
